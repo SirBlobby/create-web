@@ -104,7 +104,7 @@
 </section>
 
 <section class="bg-slate-100">
-	<div class="mx-auto max-w-6xl px-4 py-12">
+	<div class="mx-auto max-w-6xl px-4 py-10">
 		<div class="flex items-end justify-between gap-4">
 			<SectionHeading
 				eyebrow="Projects"
@@ -128,7 +128,7 @@
 </section>
 
 {#if recentNews.length > 0}
-<section class="mx-auto max-w-6xl px-4 py-20">
+<section class="mx-auto max-w-6xl px-4 py-10">
 	<div class="flex items-end justify-between gap-4">
 		<SectionHeading eyebrow="News" title="Latest updates" />
 		<a
@@ -138,7 +138,7 @@
 			All news
 		</a>
 	</div>
-	<div class="mt-10 grid gap-6 md:grid-cols-3">
+	<div class="mt-6 grid gap-6 md:grid-cols-3">
 		{#each recentNews as item (item.title + item.date)}
 			{@const link = newsLink(item, '/research')}
 			<article class="flex flex-col border border-slate-200 border-l-4 border-l-gmu-gold bg-white p-5 shadow-sm transition-colors hover:border-gmu-green hover:border-l-gmu-gold">
