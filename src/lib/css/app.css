@@ -1,0 +1,117 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+
+@theme {
+	--color-gmu-green: #006633;
+	--color-gmu-green-dark: #00532b;
+	--color-gmu-green-light: #e6f0ea;
+	--color-gmu-gold: #ffcc33;
+	--color-ink: #1f2933;
+	--color-muted: #6b7280;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	color: var(--color-ink);
+	background-color: #f7f8fa;
+}
+
+.rich-content {
+	line-height: 1.7;
+}
+.rich-content h1 {
+	font-size: 1.75rem;
+	font-weight: 700;
+	margin: 1.5rem 0 0.5rem;
+	color: var(--color-slate-900);
+}
+.rich-content h2 {
+	font-size: 1.35rem;
+	font-weight: 700;
+	margin: 1.25rem 0 0.5rem;
+	color: var(--color-slate-900);
+}
+.rich-content p {
+	margin: 0.85rem 0;
+}
+.rich-content ul {
+	list-style: disc;
+	padding-left: 1.5rem;
+	margin: 0.85rem 0;
+}
+.rich-content ol {
+	list-style: decimal;
+	padding-left: 1.5rem;
+	margin: 0.85rem 0;
+}
+.rich-content a {
+	color: var(--color-gmu-green);
+	text-decoration: underline;
+}
+.rich-content blockquote {
+	border-left: 3px solid var(--color-gmu-gold);
+	padding-left: 1rem;
+	color: var(--color-muted);
+	margin: 0.85rem 0;
+}
+.rich-content img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 0.5rem;
+}
+.rich-content .img-left {
+	float: left;
+	margin: 0.25rem 1.5rem 0.75rem 0;
+	max-width: 45%;
+}
+.rich-content .img-right {
+	float: right;
+	margin: 0.25rem 0 0.75rem 1.5rem;
+	max-width: 45%;
+}
+.rich-content .img-center {
+	display: block;
+	margin: 1.25rem auto;
+}
+.rich-content .img-full {
+	display: block;
+	width: 100%;
+	margin: 1.25rem 0;
+}
+.rich-content::after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+/* Accessibility controls */
+html.a11y-reduce-motion {
+	scroll-behavior: auto;
+}
+html.a11y-reduce-motion *,
+html.a11y-reduce-motion *::before,
+html.a11y-reduce-motion *::after {
+	animation-duration: 0.001ms !important;
+	animation-iteration-count: 1 !important;
+	transition-duration: 0.001ms !important;
+}
+
+html.a11y-contrast a {
+	text-decoration: underline;
+}
+html.a11y-contrast .text-slate-400,
+html.a11y-contrast .text-slate-500,
+html.a11y-contrast .text-slate-600,
+html.a11y-contrast .text-muted {
+	color: #1e293b !important;
+}
+html.a11y-contrast .text-white\/70,
+html.a11y-contrast .text-white\/80,
+html.a11y-contrast .text-white\/85,
+html.a11y-contrast .text-white\/90 {
+	color: #ffffff !important;
+}
