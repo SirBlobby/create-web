@@ -1,8 +1,9 @@
-export type SocialKind = 'scholar' | 'orcid' | 'linkedin' | 'researchgate';
+export type SocialKind = 'scholar' | 'orcid' | 'linkedin' | 'researchgate' | 'other';
 
 export type SocialLink = {
 	kind: SocialKind;
 	href: string;
+	icon?: string;
 };
 
 export type Member = {

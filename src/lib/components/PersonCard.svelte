@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
 	import { memberPhoto, type Member } from '$lib/ts/group';
-	import { socialMeta } from '$lib/ts/socialIcons';
+	import { socialIcon, socialLabel } from '$lib/ts/socialIcons';
 
 	let { member }: { member: Member } = $props();
 
@@ -38,15 +38,16 @@
 					<Icon icon="mdi:email" width="20" />
 				</a>
 			{/if}
-			{#each member.socials as social (social.kind)}
+			{#each member.socials as social, index (index)}
 				<a
 					href={social.href}
 					target="_blank"
 					rel="noopener noreferrer"
-					aria-label={socialMeta[social.kind].label}
+					aria-label={socialLabel(social)}
+					title={socialLabel(social)}
 					class="hover:text-gmu-green"
 				>
-					<Icon icon={socialMeta[social.kind].icon} width="20" />
+					<Icon icon={socialIcon(social)} width="20" />
 				</a>
 			{/each}
 		</div>

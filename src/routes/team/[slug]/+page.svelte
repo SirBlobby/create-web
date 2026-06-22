@@ -4,7 +4,7 @@
 	import { page } from '$app/state';
 	import Seo from '$lib/components/Seo.svelte';
 	import LoadState from '$lib/components/LoadState.svelte';
-	import { socialMeta } from '$lib/ts/socialIcons';
+	import { socialIcon, socialLabel } from '$lib/ts/socialIcons';
 	import { cms } from '$lib/ts/cms';
 	import { memberPhoto, type Member } from '$lib/ts/group';
 
@@ -87,15 +87,16 @@
 							{member.email}@gmu.edu
 						</a>
 					{/if}
-					{#each member.socials as social (social.kind)}
+					{#each member.socials as social, index (index)}
 						<a
 							href={social.href}
 							target="_blank"
 							rel="noopener noreferrer"
-							aria-label={socialMeta[social.kind].label}
+							aria-label={socialLabel(social)}
+							title={socialLabel(social)}
 							class="hover:text-gmu-green"
 						>
-							<Icon icon={socialMeta[social.kind].icon} width="22" />
+							<Icon icon={socialIcon(social)} width="22" />
 						</a>
 					{/each}
 				</div>
