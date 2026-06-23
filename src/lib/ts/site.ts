@@ -33,6 +33,7 @@ export const siteNav: NavLink[] = [
 	{ label: 'Home', path: '' },
 	{ label: 'Research', path: 'research' },
 	{ label: 'Projects', path: 'projects' },
+	{ label: 'Gallery', path: 'gallery' },
 	{ label: 'Team', path: 'team' },
 	{ label: 'Publications', path: 'publications' },
 	{ label: 'News', path: 'news' }

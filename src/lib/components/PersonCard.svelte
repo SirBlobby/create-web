@@ -5,7 +5,7 @@
 
 	let { member }: { member: Member } = $props();
 
-	const href = `/team/${member.slug || member.id}`;
+	const href = $derived(`/team/${member.slug || member.id}`);
 </script>
 
 <article class="group flex flex-col border border-slate-200 bg-white shadow-sm transition hover:border-gmu-green hover:shadow-md">

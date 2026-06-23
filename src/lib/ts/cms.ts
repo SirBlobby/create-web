@@ -6,6 +6,7 @@ import type { PublicationSection, RawPublication } from './publications';
 import { sectionsFromPublications } from './publications';
 import type { Member, MemberGroup } from './group';
 import type { Sponsor } from './home';
+import type { GalleryItem } from './gallery';
 
 const base = (env.PUBLIC_CMS_URL ?? '').replace(/\/$/, '');
 
@@ -97,6 +98,15 @@ export const cms = {
 	async sponsors(): Promise<Sponsor[] | null> {
 		const sponsors = await fetchList<Sponsor>('sponsors');
 		return sponsors?.map((sponsor) => ({ ...sponsor, image: resolveAsset(sponsor.image) ?? '' })) ?? null;
+	},
+
+	async gallery(): Promise<GalleryItem[] | null> {
+		const items = await fetchList<GalleryItem>('gallery');
+		return (
+			items
+				?.map((item) => ({ ...item, image: resolveAsset(item.image) ?? '' }))
+				.filter((item) => item.image) ?? null
+		);
 	},
 
 	async publications(): Promise<PublicationSection[] | null> {

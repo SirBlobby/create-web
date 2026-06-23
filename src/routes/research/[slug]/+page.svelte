@@ -14,7 +14,7 @@
 	let loading = $state(true);
 
 	onMount(async () => {
-		const slug = page.params.slug;
+		const slug = page.params.slug ?? '';
 		const [cmsArticle, pubData] = await Promise.all([cms.article(slug), cms.publications()]);
 		if (cmsArticle) {
 			article = cmsArticle;

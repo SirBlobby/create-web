@@ -7,7 +7,7 @@
 		brand = `${siteName} | CREATE Lab`
 	}: { title: string; description: string; brand?: string } = $props();
 
-	const fullTitle = `${title} | ${brand}`;
+	const fullTitle = $derived(`${title} | ${brand}`);
 </script>
 
 <svelte:head>
