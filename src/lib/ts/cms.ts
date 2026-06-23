@@ -4,7 +4,7 @@ import type { ResearchProject } from './research';
 import type { ResearchArticle } from './researchArticles';
 import type { PublicationSection, RawPublication } from './publications';
 import { sectionsFromPublications } from './publications';
-import type { Member, MemberGroup } from './group';
+import type { Education, Member, MemberGroup } from './group';
 import type { Sponsor } from './home';
 import type { GalleryItem } from './gallery';
 
@@ -22,6 +22,23 @@ export function resolveAsset(path: string | undefined): string | undefined {
 function absolutizeAssets(html: string): string {
 	if (!base || !html) return html;
 	return html.replace(/(["'(])\/api\/files\//g, `$1${base}/api/files/`);
+}
+
+function normalizeEducation(education: unknown): Education[] {
+	if (!Array.isArray(education)) return [];
+	return education
+		.map((entry) => {
+			if (typeof entry === 'string') {
+				return { degree: entry, institution: '', years: '' };
+			}
+			const item = (entry ?? {}) as Partial<Education>;
+			return {
+				degree: item.degree ?? '',
+				institution: item.institution ?? '',
+				years: item.years ?? ''
+			};
+		})
+		.filter((entry) => entry.degree || entry.institution || entry.years);
 }
 
 const cacheTtlMs = 60_000;
@@ -130,6 +147,7 @@ export const cms = {
 			...member,
 			photo: resolveAsset(member.photo) ?? '',
 			bio: absolutizeAssets(member.bio ?? ''),
+			education: normalizeEducation(member.education),
 			socials: (member.socials ?? []).filter((social) => social.href && social.href.trim())
 		}));
 		const professor = resolved.find((member) => member.role === 'professor');

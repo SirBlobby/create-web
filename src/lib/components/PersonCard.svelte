@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
 	import { memberPhoto, type Member } from '$lib/ts/group';
+	import EducationList from '$lib/components/EducationList.svelte';
 	import { socialIcon, socialLabel } from '$lib/ts/socialIcons';
 
 	let { member }: { member: Member } = $props();
@@ -23,11 +24,9 @@
 				<p class="mt-1 text-sm text-slate-500">{member.note}</p>
 			{/if}
 			{#if member.education.length > 0}
-				<ul class="mt-2 space-y-0.5 text-sm text-slate-600">
-					{#each member.education as line (line)}
-						<li>{line}</li>
-					{/each}
-				</ul>
+				<div class="mt-3">
+					<EducationList education={member.education} />
+				</div>
 			{/if}
 		</div>
 	</a>

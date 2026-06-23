@@ -6,6 +6,12 @@ export type SocialLink = {
 	icon?: string;
 };
 
+export type Education = {
+	degree: string;
+	institution: string;
+	years: string;
+};
+
 export type Member = {
 	id?: string;
 	slug?: string;
@@ -14,7 +20,7 @@ export type Member = {
 	photo: string;
 	note?: string;
 	bio?: string;
-	education: string[];
+	education: Education[];
 	email?: string;
 	socials: SocialLink[];
 };
@@ -34,10 +40,10 @@ export const professor: Member = {
 	name: 'Dr. Cameron Nowzari',
 	photo: '/images/pf.png',
 	education: [
-		'Postdoc, University of Pennsylvania, 2013-2016',
-		'Ph.D., University of California, San Diego, 2013',
-		'M.S., University of California, San Diego, 2010',
-		'B.S., University of California, Santa Barbara, 2009'
+		{ degree: 'Postdoc', institution: 'University of Pennsylvania', years: '2013-2016' },
+		{ degree: 'Ph.D.', institution: 'University of California, San Diego', years: '2013' },
+		{ degree: 'M.S.', institution: 'University of California, San Diego', years: '2010' },
+		{ degree: 'B.S.', institution: 'University of California, Santa Barbara', years: '2009' }
 	],
 	email: 'cnowzari@gmu.edu',
 	socials: [
@@ -56,7 +62,13 @@ export const memberGroups: MemberGroup[] = [
 				name: 'Ricardo Vega',
 				period: '2021 - present',
 				photo: '/images/ricardo.jpg',
-				education: ['B.S., Electrical Engineering, George Mason University, 2021'],
+				education: [
+					{
+						degree: 'B.S., Electrical Engineering',
+						institution: 'George Mason University',
+						years: '2021'
+					}
+				],
 				email: 'rvega7@gmu',
 				socials: [{ kind: 'linkedin', href: 'https://www.linkedin.com/in/ricardovega2021/' }]
 			},
@@ -65,7 +77,13 @@ export const memberGroups: MemberGroup[] = [
 				period: '2022 - present',
 				photo: '/images/kevin.png',
 				note: 'co-advised with Dr. Maryam Parsa',
-				education: ['B.S. Computer Engineering, George Mason University, 2021'],
+				education: [
+					{
+						degree: 'B.S., Computer Engineering',
+						institution: 'George Mason University',
+						years: '2021'
+					}
+				],
 				email: 'kzhu4@gmu',
 				socials: [{ kind: 'linkedin', href: 'https://www.linkedin.com/in/kevin-g-zhu/' }]
 			},
@@ -74,7 +92,11 @@ export const memberGroups: MemberGroup[] = [
 				period: '2024 - present',
 				photo: '/images/Photo_Shan.jpg',
 				education: [
-					'B.S. Electrical and Electronic Engineering, Chittagong University of Engineering and Technology, 2022'
+					{
+						degree: 'B.S., Electrical and Electronic Engineering',
+						institution: 'Chittagong University of Engineering and Technology',
+						years: '2022'
+					}
 				],
 				email: 'sbhatt28@gmu',
 				socials: [
@@ -100,9 +122,21 @@ export const memberGroups: MemberGroup[] = [
 				period: '2016 - 2020',
 				photo: '/images/Mohanad_Ajina.jpg',
 				education: [
-					'Ph.D., Electrical Engineering, George Mason University, 2020',
-					'M.S., Electrical Engineering, George Mason University, 2016',
-					'B.S., Electrical Engineering, Southern Illinois University, 2014'
+					{
+						degree: 'Ph.D., Electrical Engineering',
+						institution: 'George Mason University',
+						years: '2020'
+					},
+					{
+						degree: 'M.S., Electrical Engineering',
+						institution: 'George Mason University',
+						years: '2016'
+					},
+					{
+						degree: 'B.S., Electrical Engineering',
+						institution: 'Southern Illinois University',
+						years: '2014'
+					}
 				],
 				email: 'majina@gmu',
 				socials: [
@@ -114,9 +148,21 @@ export const memberGroups: MemberGroup[] = [
 				period: '2018 - 2023',
 				photo: '/images/james.jpg',
 				education: [
-					'Ph.D., Electrical and Computer Engineering, George Mason University, 2023',
-					'M.S., Electrical Engineering, George Mason University, 2020',
-					'B.S., Electrical Engineering, George Mason University, 2017'
+					{
+						degree: 'Ph.D., Electrical and Computer Engineering',
+						institution: 'George Mason University',
+						years: '2023'
+					},
+					{
+						degree: 'M.S., Electrical Engineering',
+						institution: 'George Mason University',
+						years: '2020'
+					},
+					{
+						degree: 'B.S., Electrical Engineering',
+						institution: 'George Mason University',
+						years: '2017'
+					}
 				],
 				email: 'jbernebu@gmu',
 				socials: [
@@ -129,9 +175,21 @@ export const memberGroups: MemberGroup[] = [
 				period: '2020 - 2024',
 				photo: '/images/JosephPrinceMathew.jpg',
 				education: [
-					'Ph.D., Electrical and Computer Engineering, George Mason University, 2024',
-					'M.S., Electrical Engineering, George Mason University, 2023',
-					'B.S. Electronics and Communication, Rajagiri School of Engineering and Technology, 2014'
+					{
+						degree: 'Ph.D., Electrical and Computer Engineering',
+						institution: 'George Mason University',
+						years: '2024'
+					},
+					{
+						degree: 'M.S., Electrical Engineering',
+						institution: 'George Mason University',
+						years: '2023'
+					},
+					{
+						degree: 'B.S., Electronics and Communication',
+						institution: 'Rajagiri School of Engineering and Technology',
+						years: '2014'
+					}
 				],
 				email: 'jprincem@gmu',
 				socials: []

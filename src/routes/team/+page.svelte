@@ -5,6 +5,7 @@
 	import PageHero from '$lib/components/PageHero.svelte';
 	import TeamGroup from '$lib/components/TeamGroup.svelte';
 	import LoadState from '$lib/components/LoadState.svelte';
+	import EducationList from '$lib/components/EducationList.svelte';
 	import { socialIcon, socialLabel } from '$lib/ts/socialIcons';
 	import { cms, preloadImages } from '$lib/ts/cms';
 	import { memberPhoto, type Member, type MemberGroup } from '$lib/ts/group';
@@ -53,11 +54,11 @@
 					<a href={`/team/${professor.slug || professor.id}`}>
 						<h2 class="mt-1 text-2xl font-bold text-slate-900 hover:text-gmu-green">{professor.name}</h2>
 					</a>
-					<ul class="mt-2 space-y-0.5 text-sm text-slate-600">
-						{#each professor.education as line (line)}
-							<li>{line}</li>
-						{/each}
-					</ul>
+					{#if professor.education.length > 0}
+						<div class="mt-2">
+							<EducationList education={professor.education} />
+						</div>
+					{/if}
 					<div class="mt-3 flex flex-wrap items-center gap-3 text-slate-500">
 						{#if professor.email}
 							<a

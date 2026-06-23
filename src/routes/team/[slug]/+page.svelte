@@ -4,6 +4,7 @@
 	import { page } from '$app/state';
 	import Seo from '$lib/components/Seo.svelte';
 	import LoadState from '$lib/components/LoadState.svelte';
+	import EducationList from '$lib/components/EducationList.svelte';
 	import { socialIcon, socialLabel } from '$lib/ts/socialIcons';
 	import { cms } from '$lib/ts/cms';
 	import { memberPhoto, type Member } from '$lib/ts/group';
@@ -70,11 +71,9 @@
 				{/if}
 
 				{#if member.education.length > 0}
-					<ul class="mt-4 space-y-0.5 text-sm text-slate-600">
-						{#each member.education as line (line)}
-							<li>{line}</li>
-						{/each}
-					</ul>
+					<div class="mt-4">
+						<EducationList education={member.education} />
+					</div>
 				{/if}
 
 				<div class="mt-5 flex flex-wrap items-center gap-4 text-slate-500">
