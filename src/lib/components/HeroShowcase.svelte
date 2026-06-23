@@ -1,25 +1,22 @@
 <script lang="ts">
-	import { onMount, onDestroy } from 'svelte';
+	import { untrack } from 'svelte';
 
 	let { images = [], alt = '' }: { images?: string[]; alt?: string } = $props();
 
 	let index = $state(0);
-	let timer: ReturnType<typeof setInterval> | undefined;
 
 	const intervalMs = 9000;
 	const slant = 22;
 	const nodes = [0.16, 0.42, 0.68, 0.9];
 
-	onMount(() => {
-		if (images.length > 1) {
-			timer = setInterval(() => {
-				index = (index + 1) % images.length;
-			}, intervalMs);
-		}
-	});
-
-	onDestroy(() => {
-		if (timer) clearInterval(timer);
+	$effect(() => {
+		const count = images.length;
+		if (count <= 1) return;
+		if (untrack(() => index) >= count) index = 0;
+		const timer = setInterval(() => {
+			index = (index + 1) % count;
+		}, intervalMs);
+		return () => clearInterval(timer);
 	});
 </script>
 
