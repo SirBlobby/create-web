@@ -58,7 +58,7 @@
 
 <PageHero eyebrow="Publications" title="Publications" />
 
-<section class="mx-auto max-w-4xl space-y-8 px-4 py-16">
+<section class="mx-auto max-w-5xl space-y-8 px-4 py-16">
 	{#if loading || sections.length === 0}
 		<LoadState {loading} empty="No publications yet." />
 	{:else}

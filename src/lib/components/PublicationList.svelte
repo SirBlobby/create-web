@@ -28,7 +28,7 @@
 <ul class="divide-y divide-slate-200 border-y border-slate-200">
 	{#each visible as entry (entry.id ?? entry.tag)}
 		<li class="flex gap-4 py-4">
-			<span class="h-fit border border-slate-300 px-2 py-0.5 font-mono text-xs text-slate-500">
+			<span class="h-fit shrink-0 whitespace-nowrap border border-slate-300 px-2 py-0.5 font-mono text-xs text-slate-500">
 				{entry.tag}
 			</span>
 			<div class="text-sm leading-relaxed">
