@@ -8,7 +8,7 @@
 	import { cms } from '$lib/ts/cms';
 	import { newsLink, type NewsEntry } from '$lib/ts/news';
 
-	const researchBase = '/research';
+	const newsBase = '/news';
 	const pageSize = 10;
 
 	let news = $state<NewsEntry[]>([]);
@@ -43,7 +43,7 @@
 	{:else}
 		<ul class="divide-y divide-slate-200 border-y border-slate-200">
 			{#each visible as item (item.title + item.date)}
-				{@const link = newsLink(item, researchBase)}
+				{@const link = newsLink(item, newsBase)}
 				<li class="flex flex-col gap-2 py-6 sm:flex-row sm:gap-6">
 					<span class="w-28 shrink-0 font-mono text-xs font-semibold text-gmu-green">{formatDate(item.date)}</span>
 					<div>

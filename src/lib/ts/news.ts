@@ -1,18 +1,19 @@
 export type NewsEntry = {
+	id?: string;
 	title: string;
 	date: string;
 	body?: string;
 	linkType?: 'none' | 'external' | 'article';
 	href?: string;
-	articleSlug?: string;
+	slug?: string;
 };
 
 export function newsLink(
 	item: NewsEntry,
-	researchBase: string
+	newsBase: string
 ): { href: string; external: boolean } | null {
-	if (item.linkType === 'article' && item.articleSlug) {
-		return { href: `${researchBase}/${item.articleSlug}`, external: false };
+	if (item.linkType === 'article' && item.slug) {
+		return { href: `${newsBase}/${item.slug}`, external: false };
 	}
 	if ((item.linkType === 'external' || !item.linkType) && item.href) {
 		return { href: item.href, external: true };

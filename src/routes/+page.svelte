@@ -140,7 +140,7 @@
 	</div>
 	<div class="mt-6 grid gap-6 md:grid-cols-3">
 		{#each recentNews as item (item.title + item.date)}
-			{@const link = newsLink(item, '/research')}
+			{@const link = newsLink(item, '/news')}
 			<article class="flex flex-col border border-slate-200 border-l-4 border-l-gmu-gold bg-white p-5 shadow-sm transition-colors hover:border-gmu-green hover:border-l-gmu-gold">
 				<p class="font-mono text-xs text-gmu-green">{formatDate(item.date)}</p>
 				<h3 class="mt-2 font-semibold text-slate-900">{item.title}</h3>
