@@ -6,6 +6,7 @@
 	let index = $state(0);
 	let timer: ReturnType<typeof setInterval> | undefined;
 
+	const intervalMs = 9000;
 	const slant = 22;
 	const nodes = [0.16, 0.42, 0.68, 0.9];
 
@@ -13,7 +14,7 @@
 		if (images.length > 1) {
 			timer = setInterval(() => {
 				index = (index + 1) % images.length;
-			}, 5000);
+			}, intervalMs);
 		}
 	});
 
@@ -23,6 +24,14 @@
 </script>
 
 <div class="pointer-events-none absolute inset-y-0 right-0 hidden w-[54%] md:block">
+	{#if images.length > 1}
+		<div class="absolute inset-x-0 bottom-0 z-10 h-1 bg-white/25">
+			{#key index}
+				<div class="hero-progress h-full bg-gmu-gold" style="animation-duration: {intervalMs}ms"></div>
+			{/key}
+		</div>
+	{/if}
+
 	<div
 		class="relative h-full w-full"
 		style="clip-path: polygon({slant}% 0, 100% 0, 100% 100%, 0% 100%);"
@@ -59,3 +68,28 @@
 		></span>
 	{/each}
 </div>
+
+<style>
+	.hero-progress {
+		width: 0%;
+		animation-name: hero-progress-grow;
+		animation-timing-function: linear;
+		animation-fill-mode: forwards;
+	}
+
+	@keyframes hero-progress-grow {
+		from {
+			width: 0%;
+		}
+		to {
+			width: 100%;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.hero-progress {
+			animation: none;
+			width: 100%;
+		}
+	}
+</style>
