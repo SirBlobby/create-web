@@ -54,6 +54,9 @@
 					<a href={`/team/${professor.slug || professor.id}`}>
 						<h2 class="mt-1 text-2xl font-bold text-slate-900 hover:text-gmu-green">{professor.name}</h2>
 					</a>
+					{#if professor.areaOfStudy}
+						<p class="mt-1 text-sm font-medium text-slate-700">{professor.areaOfStudy}</p>
+					{/if}
 					{#if professor.education.length > 0}
 						<div class="mt-2">
 							<EducationList education={professor.education} />

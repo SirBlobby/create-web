@@ -8,14 +8,24 @@
 	import { socialIcon, socialLabel } from '$lib/ts/socialIcons';
 	import { cms } from '$lib/ts/cms';
 	import { memberPhoto, type Member } from '$lib/ts/group';
+	import { projectLink, type ResearchProject } from '$lib/ts/research';
 
 	let member = $state<Member | null>(null);
 	let label = $state('');
+	let projects = $state<ResearchProject[]>([]);
 	let loading = $state(true);
+
+	const memberProjects = $derived(
+		member
+			? projects.filter((project) =>
+					(project.teamMembers ?? []).some((name) => name === member?.name)
+				)
+			: []
+	);
 
 	onMount(async () => {
 		const slug = page.params.slug;
-		const data = await cms.team();
+		const [data, projectData] = await Promise.all([cms.team(), cms.projects()]);
 		if (data) {
 			const everyone = [
 				{ member: data.professor, label: 'Professor' },
@@ -31,6 +41,7 @@
 				label = match.label;
 			}
 		}
+		projects = projectData ?? [];
 		loading = false;
 	});
 </script>
@@ -65,6 +76,12 @@
 				<h1 class="mt-1 text-3xl font-bold tracking-tight text-slate-900">{member.name}</h1>
 				{#if member.period}
 					<p class="mt-1 font-mono text-sm text-gmu-green">{member.period}</p>
+				{/if}
+				{#if member.areaOfStudy}
+					<p class="mt-2 text-sm text-slate-600">
+						<span class="font-semibold text-slate-700">Area of Study:</span>
+						{member.areaOfStudy}
+					</p>
 				{/if}
 				{#if member.note}
 					<p class="mt-2 text-slate-500">{member.note}</p>
@@ -105,6 +122,37 @@
 		{#if member.bio}
 			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 			<div class="rich-content mt-10 text-slate-700">{@html member.bio}</div>
+		{/if}
+
+		{#if memberProjects.length > 0}
+			<div class="mt-12">
+				<h2 class="text-lg font-bold text-slate-900">Projects</h2>
+				<ul class="mt-4 divide-y divide-slate-200 border-y border-slate-200">
+					{#each memberProjects as project (project.slug || project.id || project.title)}
+						{@const link = projectLink(project, '/research', '/projects')}
+						<li>
+							<a
+								href={link.href}
+								target={link.external ? '_blank' : undefined}
+								rel={link.external ? 'noopener noreferrer' : undefined}
+								class="group flex items-center justify-between gap-4 py-4"
+							>
+								<div>
+									<p class="font-medium text-slate-900 group-hover:text-gmu-green">{project.title}</p>
+									{#if project.years}
+										<p class="mt-0.5 font-mono text-xs text-gmu-green">{project.years}</p>
+									{/if}
+								</div>
+								<Icon
+									icon={link.external ? 'mdi:open-in-new' : 'mdi:arrow-right'}
+									width="18"
+									class="shrink-0 text-slate-400 group-hover:text-gmu-green"
+								/>
+							</a>
+						</li>
+					{/each}
+				</ul>
+			</div>
 		{/if}
 	{/if}
 </div>

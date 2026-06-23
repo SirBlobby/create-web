@@ -20,6 +20,9 @@
 			{#if member.period}
 				<p class="font-mono text-xs text-gmu-green">{member.period}</p>
 			{/if}
+			{#if member.areaOfStudy}
+				<p class="mt-1 text-sm font-medium text-slate-700">{member.areaOfStudy}</p>
+			{/if}
 			{#if member.note}
 				<p class="mt-1 text-sm text-slate-500">{member.note}</p>
 			{/if}

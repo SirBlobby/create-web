@@ -17,6 +17,7 @@ export type Member = {
 	slug?: string;
 	name: string;
 	period?: string;
+	areaOfStudy?: string;
 	photo: string;
 	note?: string;
 	bio?: string;
